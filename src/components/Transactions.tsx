@@ -1,0 +1,131 @@
+/** @jsxImportSource @emotion/react */
+import React from "react";
+import Section from "./shared/Section";
+import Container from "./shared/Container";
+import { Transaction, defaultTransactions } from "../data/transactions";
+
+import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
+import { Colors } from "../constants/constants";
+
+const TransactionItem: React.FC<{ transaction: Transaction }> = ({
+  transaction,
+}) => {
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+    }).format(date);
+  };
+
+  const formatValue = (value: number) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(value);
+  };
+
+  return (
+    <div
+      css={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "16px",
+        gap: "12px",
+      }}
+    >
+      <div css={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        {/* <div
+          css={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            backgroundColor: getCategoryColor(transaction.category),
+            color: "white",
+            fontSize: "12px",
+            fontWeight: "bold",
+          }}
+        >
+          {transaction.category.charAt(0).toUpperCase()}
+        </div> */}
+        <div
+          css={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
+          <div css={{ color: "white", fontSize: "16px", fontWeight: "500" }}>
+            {transaction.vendor}
+          </div>
+          <div
+            css={{
+              color: Colors.white50,
+              fontSize: "14px",
+              fontWeight: "400",
+            }}
+          >
+            {formatDate(transaction.date)}
+          </div>
+        </div>
+      </div>
+      <div css={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div
+          css={{
+            color: Colors.white50,
+            fontSize: "14px",
+            fontWeight: "500",
+          }}
+        >
+          {formatValue(transaction.value)}
+        </div>
+        <div
+          css={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "24px",
+            width: "24px",
+          }}
+        >
+          <ChevronIcon />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface TransactionsProps {
+  transactions?: Transaction[];
+}
+
+const Transactions: React.FC<TransactionsProps> = ({ transactions = [] }) => {
+  const displayTransactions =
+    transactions.length > 0 ? transactions : defaultTransactions;
+
+  return (
+    <Section title="Recent transactions">
+      <Container>
+        <div
+          css={{
+            display: "flex",
+            flexDirection: "column",
+            "& > div:not(:last-child)": {
+              borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
+            },
+          }}
+        >
+          {displayTransactions.map((transaction, _index) => (
+            <TransactionItem key={transaction.id} transaction={transaction} />
+          ))}
+        </div>
+      </Container>
+    </Section>
+  );
+};
+
+export default Transactions;
