@@ -25,6 +25,7 @@ const Section: React.FC<SectionProps> = ({
       {title && (
         <header
           css={{
+            marginLeft: "4px",
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "space-between",
