@@ -10,7 +10,9 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
   return (
     <header
       css={{
-        maxWidth: "1200px",
+        marginTop: "16px",
+        marginLeft: "10px",
+        marginRight: "10px",
         height: "60px",
         maxHeight: "60px",
         display: "flex",
