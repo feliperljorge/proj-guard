@@ -73,7 +73,7 @@ const TransactionItem: React.FC<{ transaction: Transaction }> = ({
           </div>
         </div>
       </div>
-      <div css={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div css={{ display: "flex", alignItems: "center", gap: "4px" }}>
         <div
           css={{
             color: Colors.white50,

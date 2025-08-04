@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AccountItem } from "../components/Accounts";
 import { defaultInstitutions, Institution } from "../data/accounts";
 import InstitutionIcon from "../components/shared/InstitutionIcon";
@@ -8,11 +8,10 @@ import { Colors, Gradients } from "../constants/constants";
 import Transactions from "../components/Transactions";
 import { defaultTransactions } from "../data/transactions";
 import Connections from "../components/Connections";
-import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
+import { PageHeader } from "../components/shared/PageHeader";
 
 function AccountPage(): React.JSX.Element {
   const { accountId: institutionId } = useParams<{ accountId?: string }>();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [institution, setInstitution] = useState<Institution | null>(null);
 
@@ -116,58 +115,7 @@ function AccountPage(): React.JSX.Element {
           boxSizing: "border-box",
         }}
       >
-        <div
-          css={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-            marginBottom: "32px",
-          }}
-        >
-          <button
-            onClick={() => navigate(-1)}
-            css={{
-              height: "32px",
-              width: "32px",
-              borderRadius: "50%",
-              border: `1px solid ${Colors.white50}`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "transparent",
-              padding: 0,
-              cursor: "pointer",
-              transition: "all 0.2s ease",
-              "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                borderColor: Colors.white,
-              },
-            }}
-          >
-            <ChevronIcon
-              css={{
-                width: "16px",
-                height: "16px",
-                transform: "rotate(180deg)",
-                marginLeft: "-10px",
-                marginTop: "-3px",
-              }}
-            />
-          </button>
-          <p
-            css={{
-              fontSize: "14px",
-              color: Colors.white,
-              fontWeight: 500,
-              margin: 0,
-            }}
-          >
-            Account details
-          </p>
-          {/* Spacer */}
-          <div css={{ height: "32px", width: "32px" }} />
-        </div>
+        <PageHeader title="Account details" />
         <div
           css={{
             display: "flex",
@@ -220,6 +168,23 @@ function AccountPage(): React.JSX.Element {
             title="Transactions"
             transactions={defaultTransactions}
           />
+
+          <button
+            css={{
+              height: "56px",
+              borderRadius: "100px",
+              color: Colors.white,
+              fontSize: "14px",
+              fontWeight: "500",
+              border: "1px solid rgba(255, 255, 255, 0.20)",
+              backgroundColor: Colors.backgroundBlue,
+              // backdropFilter: "blur(30px)",
+              boxShadow: "0px 6px 12px 0px rgba(85, 85, 85, 0.12)",
+              cursor: "pointer",
+            }}
+          >
+            Remove account
+          </button>
         </div>
       </div>
     );

@@ -46,17 +46,33 @@ const AlertItem: React.FC<{ alert: SecurityAlert }> = ({ alert }) => {
             }}
           >
             {formatDate(alert.date)}
-            {alert.institution ? ` • ${alert.institution.institutionName}` : ""}
+            {alert.institutions && alert.institutions.length > 0
+              ? ` • ${alert.institutions
+                  .map((inst) => inst.institutionName)
+                  .join(", ")}`
+              : ""}
           </div>
         </div>
       </div>
-      <div css={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        {alert.institution && (
-          <img
-            src={alert.institution?.icon}
-            alt={alert.institution?.institutionName}
-            css={{ width: "24px", height: "24px", borderRadius: "50%" }}
-          />
+      <div css={{ display: "flex", alignItems: "center", gap: "4px" }}>
+        {alert.institutions && alert.institutions.length > 0 && (
+          <div css={{ display: "flex", alignItems: "center" }}>
+            {alert.institutions.map((institution, index) => (
+              <img
+                key={institution.id}
+                src={institution.icon}
+                alt={institution.institutionName}
+                css={{
+                  width: "24px",
+                  height: "24px",
+                  borderRadius: "50%",
+                  border: index > 0 ? "1px solid #10253A" : "none",
+                  marginLeft: index > 0 ? "-8px" : "0px",
+                  zIndex: index,
+                }}
+              />
+            ))}
+          </div>
         )}
         <div
           css={{
