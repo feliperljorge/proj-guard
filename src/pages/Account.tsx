@@ -9,6 +9,7 @@ import Transactions from "../components/Transactions";
 import { defaultTransactions } from "../data/transactions";
 import Connections from "../components/Connections";
 import { PageHeader } from "../components/shared/PageHeader";
+import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 function AccountPage(): React.JSX.Element {
   const { accountId: institutionId } = useParams<{ accountId?: string }>();
@@ -19,16 +20,15 @@ function AccountPage(): React.JSX.Element {
     if (institutionId) {
       setLoading(true);
       // TODO: Make API call to fetch specific institution details
-      // Example: fetchInstitutionDetails(institutionId).then(...)
-      console.log("Loading institution details for ID:", institutionId);
 
-      // Simulate API call delay
+      // Simulate API call delay with randomized loading time
+      const randomDelay = Math.random() * 650 + 350; // Random delay between 350ms and 1000ms
       setTimeout(() => {
         // For now, we'll simulate finding institution details from our mock data
         const foundInstitution = findInstitutionById(institutionId);
         setInstitution(foundInstitution);
         setLoading(false);
-      }, 1000);
+      }, randomDelay);
     }
   }, [institutionId]);
 
@@ -55,48 +55,75 @@ function AccountPage(): React.JSX.Element {
 
   if (!institution && loading) {
     return (
+      // <div
+      //   css={{
+      //     padding: "16px",
+      //     paddingBottom: "48px",
+      //     width: "100%",
+      //     maxWidth: "100%",
+      //     overflowX: "hidden",
+      //     boxSizing: "border-box",
+      //   }}
+      // >
+      //   <PageHeader title="Account details" />
+
+      //   <div
+      //     css={{
+      //       display: "flex",
+      //       flexDirection: "column",
+      //       gap: "24px",
+      //       marginTop: "24px",
+      //     }}
+      //   >
+      //     {/* Institution header skeleton */}
+      //     <div css={{ display: "flex", alignItems: "center", gap: "12px" }}>
+      //       <Skeleton width="24px" height="24px" borderRadius="12px" />
+      //       <div css={{ flex: 1 }}>
+      //         <Skeleton width="120px" height="16px" />
+      //       </div>
+      //     </div>
+
+      //     {/* Balance skeleton */}
+      //     <Skeleton width="200px" height="32px" />
+
+      //     {/* Accounts skeleton */}
+      //     <div css={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      //       {Array.from({ length: 3 }).map((_, index) => (
+      //         <div
+      //           key={index}
+      //           css={{
+      //             padding: "16px",
+      //             borderRadius: "12px",
+      //             background: "rgba(255, 255, 255, 0.05)",
+      //             border: "1px solid rgba(255, 255, 255, 0.1)",
+      //           }}
+      //         >
+      //           <div
+      //             css={{
+      //               display: "flex",
+      //               justifyContent: "space-between",
+      //               alignItems: "center",
+      //               marginBottom: "8px",
+      //             }}
+      //           >
+      //             <Skeleton width="100px" height="14px" />
+      //             <Skeleton width="80px" height="14px" />
+      //           </div>
+      //           <Skeleton width="60px" height="12px" />
+      //         </div>
+      //       ))}
+      //     </div>
+      //   </div>
+      // </div>
       <div
         css={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "32px 16px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
         }}
       >
-        <h1
-          css={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            marginBottom: "24px",
-            color: "white",
-          }}
-        >
-          Institution Details
-        </h1>
-        <div
-          css={{
-            textAlign: "center",
-            padding: "32px 0",
-          }}
-        >
-          <div
-            css={{
-              animation: "spin 1s linear infinite",
-              borderRadius: "50%",
-              height: "32px",
-              width: "32px",
-              borderBottom: "2px solid white",
-              margin: "0 auto",
-            }}
-          />
-          <p
-            css={{
-              marginTop: "8px",
-              color: "rgba(156, 163, 175, 1)",
-            }}
-          >
-            Loading institution details...
-          </p>
-        </div>
+        <LoadingSpinner />
       </div>
     );
   }

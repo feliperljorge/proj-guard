@@ -47,7 +47,7 @@ export const AccountItem: React.FC<{
             css={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
+              gap: "8px",
               padding: "14px 16px",
               paddingBottom: "12px",
               borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
@@ -64,8 +64,8 @@ export const AccountItem: React.FC<{
             <h3
               css={{
                 margin: 0,
-                fontSize: "18px",
-                fontWeight: "600",
+                fontSize: "16px",
+                fontWeight: "500",
                 color: "white",
                 lineHeight: "1.2",
               }}
@@ -113,11 +113,20 @@ export const AccountItem: React.FC<{
                 css={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "12px",
-                  marginLeft: "2px",
+                  gap: "8px",
                 }}
               >
-                <ShieldIcon />
+                <div
+                  css={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "24px",
+                    width: "24px",
+                  }}
+                >
+                  <ShieldIcon />
+                </div>
                 <div
                   css={{
                     display: "flex",

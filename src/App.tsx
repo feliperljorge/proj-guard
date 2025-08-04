@@ -7,10 +7,12 @@ import AccountPage from "./pages/Account";
 import SecurityAlertsPage from "./pages/SecurityAlerts";
 import TransactionsPage from "./pages/Transactions";
 import Profile from "./pages/Profile";
+import { useScrollToTop } from "./hooks/useScrollToTop";
 
 function App(): React.JSX.Element {
   return (
     <Router>
+      <ScrollToTop />
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,6 +25,12 @@ function App(): React.JSX.Element {
       </div>
     </Router>
   );
+}
+
+// Component that uses the scroll-to-top hook
+function ScrollToTop() {
+  useScrollToTop();
+  return null;
 }
 
 export default App;

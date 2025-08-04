@@ -111,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
             transition: "all 0.3s ease",
             objectFit: "cover",
             boxShadow:
-              "0 2.286px 13.714px 0 rgba(0, 0, 0, 0.05), 0 0.286px 0.286px 0.143px rgba(255, 255, 255, 0.95) inset, 0 0 0.762px 0 rgba(17, 17, 18, 0.02), 0 2.286px 4.571px 0 rgba(17, 17, 18, 0.12)",
+              "0 2.5px 14px 0 rgba(0, 0, 0, 0.05), 0 0.286px 0.286px 0.143px rgba(255, 255, 255, 0.95) inset, 0 0 0.762px 0 rgba(17, 17, 18, 0.02), 0 2.286px 4.571px 0 rgba(17, 17, 18, 0.12)",
             backdropFilter: "blur(4px)",
           }}
         />
