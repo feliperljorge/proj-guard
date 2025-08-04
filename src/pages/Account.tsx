@@ -108,9 +108,9 @@ function AccountPage(): React.JSX.Element {
     return (
       <div
         css={{
-          // maxWidth: "1200px",
-          // margin: "0 auto",
-          padding: "32px 16px",
+          padding: "16px",
+          paddingBottom: "48px",
+          WebkitOverflowScrolling: "touch",
         }}
       >
         <div

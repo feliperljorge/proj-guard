@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Section from "./shared/Section";
+import Section, { SectionHeaderButton } from "./shared/Section";
 import Container from "./shared/Container";
 import InstitutionIcon from "./shared/InstitutionIcon";
 import { Institution, defaultInstitutions } from "../data/accounts";
@@ -175,8 +175,50 @@ const Accounts: React.FC<AccountsProps> = ({ institutions = [] }) => {
   const displayInstitutions =
     institutions.length > 0 ? institutions : defaultInstitutions;
 
+  // Calculate total balance across all institutions
+  const calculateTotalBalance = () => {
+    return displayInstitutions.reduce((total, institution) => {
+      return (
+        total +
+        institution.accounts.reduce((institutionTotal, account) => {
+          return institutionTotal + account.balance;
+        }, 0)
+      );
+    }, 0);
+  };
+
+  const formatBalance = (balance: number) => {
+    const isNegative = balance < 0;
+    const absBalance = Math.abs(balance);
+
+    // Convert to K format
+    const inThousands = absBalance / 1000;
+    const formatted = inThousands.toFixed(2).replace(/\.?0+$/, ""); // Remove trailing zeros
+    const displayValue = formatted.endsWith(".")
+      ? formatted.slice(0, -1)
+      : formatted;
+
+    return isNegative ? `-${displayValue}K` : `${displayValue}K`;
+  };
+
+  const totalBalance = calculateTotalBalance();
+
   return (
-    <Section title="Accounts">
+    <Section
+      title="Accounts"
+      headerItems={[
+        <SectionHeaderButton>
+          {formatBalance(totalBalance)}
+        </SectionHeaderButton>,
+        <SectionHeaderButton
+          onClick={() => {
+            console.log("Add account tapped");
+          }}
+        >
+          Add
+        </SectionHeaderButton>,
+      ]}
+    >
       <div
         css={{
           display: "flex",

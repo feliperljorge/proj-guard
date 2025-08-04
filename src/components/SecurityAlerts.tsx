@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import Section from "./shared/Section";
+import Section, { SectionHeaderButton } from "./shared/Section";
 import Container from "./shared/Container";
 import { SecurityAlert, defaultSecurityAlerts } from "../data/securityAlerts";
 
@@ -82,7 +82,10 @@ const SecurityAlerts: React.FC<SecurityAlertsProps> = ({ alerts = [] }) => {
   const displayAlerts = alerts.length > 0 ? alerts : defaultSecurityAlerts;
 
   return (
-    <Section title="Security alerts">
+    <Section
+      title="Security alerts"
+      headerItems={[<SectionHeaderButton>View all</SectionHeaderButton>]}
+    >
       <Container>
         <div
           css={{

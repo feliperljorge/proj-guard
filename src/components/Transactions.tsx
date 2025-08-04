@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import Section from "./shared/Section";
+import Section, { SectionHeaderButton } from "./shared/Section";
 import Container from "./shared/Container";
 import { Transaction, defaultTransactions } from "../data/transactions";
 
@@ -112,7 +112,10 @@ const Transactions: React.FC<TransactionsProps> = ({
     transactions.length > 0 ? transactions : defaultTransactions;
 
   return (
-    <Section title={title}>
+    <Section
+      title={title}
+      headerItems={[<SectionHeaderButton>View all</SectionHeaderButton>]}
+    >
       <Container>
         <div
           css={{
