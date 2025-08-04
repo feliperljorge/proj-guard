@@ -152,7 +152,14 @@ function AccountPage(): React.JSX.Element {
               }}
             />
           </button>
-          <p css={{ fontSize: "14px", color: Colors.white, fontWeight: 500 }}>
+          <p
+            css={{
+              fontSize: "14px",
+              color: Colors.white,
+              fontWeight: 500,
+              margin: 0,
+            }}
+          >
             Account details
           </p>
           {/* Spacer */}
