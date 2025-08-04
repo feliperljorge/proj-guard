@@ -5,4 +5,6 @@
   padding-left: 2px;
   padding-right: 2px;
   text-align: center;
+  /* Had to add this because horizontal connections was causing horizontal scroll on the page */
+  overflow-x: hidden;
 }

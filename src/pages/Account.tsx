@@ -110,7 +110,10 @@ function AccountPage(): React.JSX.Element {
         css={{
           padding: "16px",
           paddingBottom: "48px",
-          WebkitOverflowScrolling: "touch",
+          width: "100%",
+          maxWidth: "100%",
+          overflowX: "hidden",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -147,7 +150,7 @@ function AccountPage(): React.JSX.Element {
                 width: "16px",
                 height: "16px",
                 transform: "rotate(180deg)",
-                marginLeft: "-9px",
+                marginLeft: "-10px",
                 marginTop: "-3px",
               }}
             />
