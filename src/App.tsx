@@ -1,36 +1,25 @@
-import React, { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-
-import Feed from "./components/Feed";
-import Accounts from "./components/Accounts";
-import SecurityAlerts from "./components/SecurityAlerts";
-import Transactions from "./components/Transactions";
+import Home from "./pages/Home";
+import AccountPage from "./pages/Account";
+import SecurityAlertsPage from "./pages/SecurityAlerts";
+import TransactionsPage from "./pages/Transactions";
 
 function App(): React.JSX.Element {
-  const [count, setCount] = useState<number>(0);
-
-  const handleMenuToggle = () => {
-    console.log("Menu toggle clicked");
-    // Add your mobile menu logic here
-  };
-
   return (
-    <>
+    <Router>
       <div>
-        <Header onMenuToggle={handleMenuToggle} />
-        <Hero />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/accounts" element={<AccountPage />} />
+          <Route path="/accounts/:accountId" element={<AccountPage />} />
+          <Route path="/security-alerts" element={<SecurityAlertsPage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
+        </Routes>
       </div>
-      <Feed>
-        <Accounts />
-        <SecurityAlerts />
-        <Transactions />
-      </Feed>
-    </>
+    </Router>
   );
 }
 

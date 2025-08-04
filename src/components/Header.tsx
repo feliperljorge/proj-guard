@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import { Colors } from "../constants/constants";
 
 interface HeaderProps {
   onMenuToggle?: () => void;

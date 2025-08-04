@@ -100,15 +100,19 @@ const TransactionItem: React.FC<{ transaction: Transaction }> = ({
 };
 
 interface TransactionsProps {
+  title?: string;
   transactions?: Transaction[];
 }
 
-const Transactions: React.FC<TransactionsProps> = ({ transactions = [] }) => {
+const Transactions: React.FC<TransactionsProps> = ({
+  title = "Recent transactions",
+  transactions = [],
+}) => {
   const displayTransactions =
     transactions.length > 0 ? transactions : defaultTransactions;
 
   return (
-    <Section title="Recent transactions">
+    <Section title={title}>
       <Container>
         <div
           css={{

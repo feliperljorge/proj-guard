@@ -2,7 +2,6 @@
 
 import { defaultUser } from "../data/users";
 import { Colors } from "../constants/constants";
-import { defaultSecurityAlerts } from "../data/securityAlerts";
 
 const Hero: React.FC = ({}) => {
   const { firstName } = defaultUser;
@@ -79,7 +78,9 @@ const Hero: React.FC = ({}) => {
         }}
       >
         {hasAlerts
-          ? `Review ${reviewAlerts.length} alerts`
+          ? `Review ${reviewAlerts.length} ${
+              reviewAlerts.length === 1 ? "alert" : "alerts"
+            }`
           : "No issues right now"}
       </div>
     </div>

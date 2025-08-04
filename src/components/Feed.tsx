@@ -5,8 +5,6 @@ import { Colors } from "../constants/constants";
 interface FeedProps {
   children: ReactNode;
   className?: string;
-  //   maxHeight?: string;
-  //   showScrollbar?: boolean;
 }
 
 const Feed: React.FC<FeedProps> = ({ children, className = "" }) => {

@@ -1,15 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Section from "./shared/Section";
 import Container from "./shared/Container";
+import InstitutionIcon from "./shared/InstitutionIcon";
 import { Institution, defaultInstitutions } from "../data/accounts";
 
 import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
 import { ReactComponent as ShieldIcon } from "../assets/shield.svg";
 
-const AccountItem: React.FC<{ institution: Institution }> = ({
-  institution,
-}) => {
+export const AccountItem: React.FC<{
+  institution: Institution;
+  showHeader?: boolean;
+}> = ({ institution, showHeader = true }) => {
+  const navigate = useNavigate();
+
   const formatBalance = (balance: number) => {
     const isNegative = balance < 0;
     const absBalance = Math.abs(balance);
@@ -21,6 +26,13 @@ const AccountItem: React.FC<{ institution: Institution }> = ({
     return isNegative ? `-${formatted}` : formatted;
   };
 
+  const handleInstitutionClick = () => {
+    // Navigate to this institution
+    if (institution.accounts.length > 0) {
+      navigate(`/accounts/${institution.id}`);
+    }
+  };
+
   return (
     <Container>
       <div
@@ -30,63 +42,51 @@ const AccountItem: React.FC<{ institution: Institution }> = ({
         }}
       >
         {/* Institution Header */}
-        <div
-          css={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            padding: "14px 16px",
-            paddingBottom: "12px",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
-          }}
-        >
+        {showHeader && (
           <div
             css={{
-              width: "24px",
-              height: "24px",
-              borderRadius: "50%",
-              backgroundColor: "green",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              overflow: "hidden",
+              gap: "12px",
+              padding: "14px 16px",
+              paddingBottom: "12px",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              cursor: "pointer",
+              transition: "background-color 0.2s ease",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+              },
             }}
+            onClick={handleInstitutionClick}
           >
-            <img
-              src={institution.icon}
-              alt={institution.institutionName}
+            <InstitutionIcon institution={institution} />
+            <h3
               css={{
-                width: "100%",
-                height: "100%",
+                margin: 0,
+                fontSize: "18px",
+                fontWeight: "600",
+                color: "white",
+                lineHeight: "1.2",
               }}
-            />
-          </div>
-          <h3
-            css={{
-              margin: 0,
-              fontSize: "18px",
-              fontWeight: "600",
-              color: "white",
-              lineHeight: "1.2",
-            }}
-          >
-            {institution.institutionName}
-          </h3>
+            >
+              {institution.institutionName}
+            </h3>
 
-          <div
-            css={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "24px",
-              width: "24px",
-              marginLeft: "auto",
-            }}
-          >
-            <ChevronIcon />
+            <div
+              css={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "24px",
+                width: "24px",
+                marginLeft: "auto",
+              }}
+            >
+              <ChevronIcon />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Accounts List */}
         <div

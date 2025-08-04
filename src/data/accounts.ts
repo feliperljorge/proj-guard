@@ -10,6 +10,7 @@ export interface Institution {
   institutionName: string;
   icon: string; // URL to institution icon
   accounts: AccountDetails[];
+  color?: string;
 }
 
 export const defaultInstitutions: Institution[] = [
@@ -17,6 +18,7 @@ export const defaultInstitutions: Institution[] = [
     id: "1",
     institutionName: "Chase Bank",
     icon: "https://logo.clearbit.com/chase.com",
+    color: "#26569c",
     accounts: [
       {
         type: "checking",
@@ -36,6 +38,7 @@ export const defaultInstitutions: Institution[] = [
     id: "2",
     institutionName: "Chime",
     icon: "https://logo.clearbit.com/chime.com",
+    color: "#5ec37e",
     accounts: [
       {
         type: "checking",
@@ -55,6 +58,7 @@ export const defaultInstitutions: Institution[] = [
     id: "3",
     institutionName: "SoFi",
     icon: "https://logo.clearbit.com/sofi.com",
+    color: "#48a0c3",
     accounts: [
       {
         type: "checking",
