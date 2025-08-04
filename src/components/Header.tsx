@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
+import { ReactComponent as PlaidLogo } from "../assets/Plaid Logo.svg";
 
 interface HeaderProps {
   onMenuToggle?: () => void;
@@ -84,13 +85,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
       </div>
 
       {/* Center - Icon */}
-      <div
-        css={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      ></div>
+      <PlaidLogo />
 
       {/* Right - Profile Picture */}
       <div
