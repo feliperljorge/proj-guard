@@ -9,6 +9,9 @@ export interface User {
   isActive: boolean;
   createdAt: string; // ISO date string
   lastLogin?: string; // ISO date string
+  // Profile information
+  location?: string;
+  socialSecurity?: string;
 }
 
 export const defaultUser: User = {
@@ -19,8 +22,11 @@ export const defaultUser: User = {
   phone: "+1 (555) 123-4567",
   dateOfBirth: "1990-05-15",
   avatar:
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "https://img.freepik.com/premium-photo/ai-generated-images-build-user-profile-page_1290175-101.jpg",
   isActive: true,
   createdAt: "2024-01-15T10:30:00Z",
   lastLogin: "2024-12-19T14:45:00Z",
+  // Profile information
+  location: "San Francisco, CA",
+  socialSecurity: "***-**-1234",
 };

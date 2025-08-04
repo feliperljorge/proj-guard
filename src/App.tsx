@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import AccountPage from "./pages/Account";
 import SecurityAlertsPage from "./pages/SecurityAlerts";
 import TransactionsPage from "./pages/Transactions";
+import Profile from "./pages/Profile";
 
 function App(): React.JSX.Element {
   return (
@@ -17,6 +18,7 @@ function App(): React.JSX.Element {
           <Route path="/accounts/:accountId" element={<AccountPage />} />
           <Route path="/security-alerts" element={<SecurityAlertsPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>

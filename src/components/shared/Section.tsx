@@ -38,7 +38,7 @@ const Section: React.FC<SectionProps> = ({
             css={{
               margin: 0,
               fontSize: "20px",
-              fontWeight: "600",
+              fontWeight: "500",
               color: "white",
               lineHeight: "1.4",
             }}

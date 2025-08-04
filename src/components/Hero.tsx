@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { defaultUser } from "../data/users";
+import { defaultUser } from "../data/user";
 import { Colors } from "../constants/constants";
 
 const Hero: React.FC = ({}) => {

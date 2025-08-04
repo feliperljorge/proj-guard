@@ -1,12 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import { ReactComponent as PlaidLogo } from "../assets/Plaid Logo.svg";
+import { useNavigate } from "react-router-dom";
+import { defaultUser } from "../data/user";
 
 interface HeaderProps {
   onMenuToggle?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
+  const navigate = useNavigate();
+
   return (
     <header
       css={{
@@ -89,15 +93,14 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
 
       {/* Right - Profile Picture */}
       <div
+        onClick={() => navigate("/profile")}
         css={{
           display: "flex",
           alignItems: "center",
         }}
       >
         <img
-          src={
-            "https://img.freepik.com/premium-photo/ai-generated-images-build-user-profile-page_1290175-101.jpg"
-          }
+          src={defaultUser.avatar}
           alt="Profile"
           css={{
             width: "32px",
