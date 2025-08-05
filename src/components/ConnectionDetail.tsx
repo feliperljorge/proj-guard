@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { useState } from "react";
 import { Connection } from "../data/connections";
 import { Colors } from "../constants/constants";
 import { Institution } from "../data/accounts";
@@ -13,6 +13,8 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
   institution,
   connection,
 }) => {
+  const [isDisconnecting, setIsDisconnecting] = useState(false);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("en-US", {
@@ -30,38 +32,39 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
       css={{
         display: "flex",
         flexDirection: "column",
+        textAlign: "left",
       }}
     >
-      {/* Header with logo and name */}
-      <div
-        css={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "6px",
-        }}
-      >
-        <h1 css={{ margin: 0, fontSize: "20px", fontWeight: "600" }}>
-          {connection.name} account connected
-        </h1>
-        <p
+      {!isDisconnecting && (
+        <div
           css={{
-            margin: 0,
-            fontSize: "14px",
-            fontWeight: 400,
-            color: Colors.white,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "6px",
           }}
         >
-          To {institution.institutionName} accounts |{" "}
-          {formatDate(connection.date)}
-        </p>
-      </div>
+          <h1 css={{ margin: 0, fontSize: "20px", fontWeight: "600" }}>
+            {connection.name} account connected
+          </h1>
+          <p
+            css={{
+              margin: 0,
+              fontSize: "14px",
+              fontWeight: 400,
+              color: Colors.white,
+            }}
+          >
+            To {institution.institutionName} accounts |{" "}
+            {formatDate(connection.date)}
+          </p>
+        </div>
+      )}
 
       <div
         css={{
-          height: "120px",
-          marginTop: "16px",
-          marginBottom: "16px",
+          marginTop: isDisconnecting ? "16px" : "48px",
+          marginBottom: "48px",
           display: "flex",
           gap: "6px",
           alignItems: "center",
@@ -135,6 +138,19 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
         </div>
       </div>
 
+      {isDisconnecting && (
+        <h1
+          css={{
+            margin: 0,
+            marginBottom: "16px",
+            fontSize: "20px",
+            fontWeight: "600",
+          }}
+        >
+          Are you sure you want to disconnect?
+        </h1>
+      )}
+
       <p
         css={{
           margin: 0,
@@ -144,8 +160,21 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
           textAlign: "left",
         }}
       >
-        Connecting your {connection.name} to {institution.institutionName}{" "}
-        accounts will help you easily send and receive money.
+        {isDisconnecting ? (
+          <span>
+            This will stop sharing new date with {institution.institutionName}{" "}
+            and may affect {institution.institutionName}'s functionality. We'll
+            notify {institution.institutionName} to delete your data but you
+            should confirm with them that data previously shared is deleted.
+            Plaid will maintain connections between this financial account and
+            other connected apps.
+          </span>
+        ) : (
+          <span>
+            Connecting your {connection.name} to {institution.institutionName}{" "}
+            accounts will help you easily send and receive money.
+          </span>
+        )}
       </p>
 
       {/* Actions */}
@@ -154,10 +183,11 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          marginTop: "32px",
+          marginTop: "28px",
         }}
       >
         <button
+          onClick={() => setIsDisconnecting(true)}
           css={{
             width: "100%",
             height: "48px",
@@ -176,7 +206,7 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
             cursor: "pointer",
           }}
         >
-          Disconnect
+          {isDisconnecting ? "Confirm" : "Disconnect"}
         </button>
       </div>
     </div>

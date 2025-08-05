@@ -37,7 +37,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
     setTimeout(() => {
       onClose();
       setIsClosing(false);
-    }, ANIMATION_DURATION); // Match animation duration
+    }, ANIMATION_DURATION);
   };
 
   if (!isOpen && !isClosing) return null;
@@ -53,7 +53,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
           right: 0,
           bottom: 0,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
-          backdropFilter: "blur(3px)",
+          backdropFilter: "blur(2px)",
           zIndex: 1000,
           animation: isClosing
             ? `fadeOut ${ANIMATION_DURATION}ms ease`
@@ -128,7 +128,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
           css={{
             padding: "20px",
             paddingTop: "0px",
-            maxHeight: "calc(80vh - 80px)",
+            // maxHeight: "calc(80vh - 80px)",
             overflowY: "auto",
             "&::-webkit-scrollbar": {
               width: "4px",
