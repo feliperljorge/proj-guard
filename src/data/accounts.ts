@@ -1,3 +1,5 @@
+import { connections, Connection } from "./connections";
+
 export interface AccountDetails {
   type: "checking" | "savings" | "credit" | "personal";
   accountNumber: string;
@@ -11,6 +13,7 @@ export interface Institution {
   icon: string; // URL to institution icon
   accounts: AccountDetails[];
   color?: string;
+  connections: Connection[];
 }
 
 export const defaultInstitutions: Institution[] = [
@@ -19,6 +22,7 @@ export const defaultInstitutions: Institution[] = [
     institutionName: "Chase Bank",
     icon: "https://logo.clearbit.com/chase.com",
     color: "#26569c",
+    connections: [connections[0], connections[1], connections[3]], // Venmo, Robinhood, PayPal
     accounts: [
       {
         type: "checking",
@@ -39,6 +43,7 @@ export const defaultInstitutions: Institution[] = [
     institutionName: "Chime",
     icon: "https://logo.clearbit.com/chime.com",
     color: "#5ec37e",
+    connections: [connections[0], connections[4], connections[5]], // Venmo, Cash App, Coinbase
     accounts: [
       {
         type: "checking",
@@ -59,6 +64,7 @@ export const defaultInstitutions: Institution[] = [
     institutionName: "SoFi",
     icon: "https://logo.clearbit.com/sofi.com",
     color: "#48a0c3",
+    connections: [connections[1], connections[3], connections[6]], // Robinhood, PayPal, Stripe
     accounts: [
       {
         type: "checking",

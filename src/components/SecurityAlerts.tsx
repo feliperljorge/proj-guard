@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import Section, { SectionHeaderButton } from "./shared/Section";
+import Section from "./shared/Section";
 import Container from "./shared/Container";
+import ViewAllButton from "./shared/ViewAllButton";
 import { SecurityAlert, defaultSecurityAlerts } from "../data/securityAlerts";
 
 import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
@@ -90,33 +91,54 @@ const AlertItem: React.FC<{ alert: SecurityAlert }> = ({ alert }) => {
   );
 };
 
-interface SecurityAlertsProps {
-  alerts?: SecurityAlert[];
-}
+export const AlertsContainer: React.FC<{ alerts: SecurityAlert[] }> = ({
+  alerts,
+}) => {
+  return (
+    <Container>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "column",
+          "& > div:not(:last-child)": {
+            borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
+          },
+        }}
+      >
+        {alerts.map((alert, _index) => (
+          <AlertItem key={alert.id} alert={alert} />
+        ))}
+      </div>
+    </Container>
+  );
+};
 
-const SecurityAlerts: React.FC<SecurityAlertsProps> = ({ alerts = [] }) => {
+const SecurityAlerts: React.FC<{
+  alerts?: SecurityAlert[];
+  institutionId?: string;
+}> = ({ alerts = [], institutionId }) => {
   const displayAlerts = alerts.length > 0 ? alerts : defaultSecurityAlerts;
+  const latestAlerts = displayAlerts.slice(0, 5);
+  const hasMoreAlerts = displayAlerts.length > 5;
 
   return (
     <Section
       title="Security alerts"
-      headerItems={[<SectionHeaderButton>View all</SectionHeaderButton>]}
+      headerItems={
+        hasMoreAlerts
+          ? [
+              <ViewAllButton
+                to={
+                  institutionId
+                    ? `/security-alerts/${institutionId}`
+                    : "/security-alerts"
+                }
+              />,
+            ]
+          : []
+      }
     >
-      <Container>
-        <div
-          css={{
-            display: "flex",
-            flexDirection: "column",
-            "& > div:not(:last-child)": {
-              borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
-            },
-          }}
-        >
-          {displayAlerts.map((alert, _index) => (
-            <AlertItem key={alert.id} alert={alert} />
-          ))}
-        </div>
-      </Container>
+      <AlertsContainer alerts={latestAlerts} />
     </Section>
   );
 };

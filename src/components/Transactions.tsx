@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import Section, { SectionHeaderButton } from "./shared/Section";
+import Section from "./shared/Section";
 import Container from "./shared/Container";
+import ViewAllButton from "./shared/ViewAllButton";
 import { Transaction, defaultTransactions } from "../data/transactions";
 
 import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
@@ -99,38 +100,63 @@ const TransactionItem: React.FC<{ transaction: Transaction }> = ({
   );
 };
 
+export const TransactionsContainer: React.FC<{
+  transactions: Transaction[];
+}> = ({ transactions }) => {
+  return (
+    <Container>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "column",
+          "& > div:not(:last-child)": {
+            borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
+          },
+        }}
+      >
+        {transactions.map((transaction, _index) => (
+          <TransactionItem key={transaction.id} transaction={transaction} />
+        ))}
+      </div>
+    </Container>
+  );
+};
+
 interface TransactionsProps {
   title?: string;
   transactions?: Transaction[];
+  institutionId?: string;
 }
 
 const Transactions: React.FC<TransactionsProps> = ({
   title = "Recent transactions",
   transactions = [],
+  institutionId,
 }) => {
   const displayTransactions =
     transactions.length > 0 ? transactions : defaultTransactions;
 
+  const latestTransactions = displayTransactions.slice(0, 5);
+  const hasMoreTransactions = displayTransactions.length > 5;
+
   return (
     <Section
       title={title}
-      headerItems={[<SectionHeaderButton>View all</SectionHeaderButton>]}
+      headerItems={
+        hasMoreTransactions
+          ? [
+              <ViewAllButton
+                to={
+                  institutionId
+                    ? `/transactions/${institutionId}`
+                    : "/transactions"
+                }
+              />,
+            ]
+          : []
+      }
     >
-      <Container>
-        <div
-          css={{
-            display: "flex",
-            flexDirection: "column",
-            "& > div:not(:last-child)": {
-              borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
-            },
-          }}
-        >
-          {displayTransactions.map((transaction, _index) => (
-            <TransactionItem key={transaction.id} transaction={transaction} />
-          ))}
-        </div>
-      </Container>
+      <TransactionsContainer transactions={latestTransactions} />
     </Section>
   );
 };

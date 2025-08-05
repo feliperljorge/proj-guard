@@ -1,13 +1,20 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { useState } from "react";
 import { connections, Connection as ConnectionType } from "../data/connections";
 import Section from "./shared/Section";
+import BottomSheet from "./shared/BottomSheet";
+import ConnectionDetail from "./ConnectionDetail";
+import { Institution } from "../data/accounts";
 
 interface ConnectionProps {
   connection: ConnectionType;
+  onConnectionTap: (connection: ConnectionType) => void;
 }
 
-const Connection: React.FC<ConnectionProps> = ({ connection }) => {
+const Connection: React.FC<ConnectionProps> = ({
+  connection,
+  onConnectionTap,
+}) => {
   return (
     <div
       css={{
@@ -31,6 +38,7 @@ const Connection: React.FC<ConnectionProps> = ({ connection }) => {
             "0 0 4px 0 rgba(255, 255, 255, 0.30) inset, 0 0 4px 0 rgba(17, 17, 18, 0.02), 0 8px 24px 8px rgba(17, 17, 18, 0.15)",
         },
       }}
+      onClick={() => onConnectionTap(connection)}
     >
       <div
         css={{
@@ -58,26 +66,57 @@ const Connection: React.FC<ConnectionProps> = ({ connection }) => {
   );
 };
 
-const Connections: React.FC = () => {
+const Connections: React.FC<{ institution: Institution }> = ({
+  institution,
+}) => {
+  const [selectedConnection, setSelectedConnection] =
+    useState<ConnectionType | null>(null);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+  const handleConnectionTap = (connection: ConnectionType) => {
+    setSelectedConnection(connection);
+    setIsBottomSheetOpen(true);
+  };
+
+  const handleCloseBottomSheet = () => {
+    setIsBottomSheetOpen(false);
+    setSelectedConnection(null);
+  };
+
   return (
-    <Section title={"Connections"}>
-      <div
-        css={{
-          display: "flex",
-          overflowX: "auto",
-          gap: "12px",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
-      >
-        {connections.map((connection) => (
-          <Connection key={connection.id} connection={connection} />
-        ))}
-      </div>
-    </Section>
+    <>
+      <Section title={"Connections"}>
+        <div
+          css={{
+            display: "flex",
+            overflowX: "auto",
+            gap: "12px",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
+          {connections.map((connection) => (
+            <Connection
+              key={connection.id}
+              connection={connection}
+              onConnectionTap={handleConnectionTap}
+            />
+          ))}
+        </div>
+      </Section>
+
+      <BottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet}>
+        {selectedConnection && (
+          <ConnectionDetail
+            connection={selectedConnection}
+            institution={institution}
+          />
+        )}
+      </BottomSheet>
+    </>
   );
 };
 

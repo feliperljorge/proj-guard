@@ -6,15 +6,19 @@ import { defaultInstitutions, Institution } from "../data/accounts";
 import InstitutionIcon from "../components/shared/InstitutionIcon";
 import { Colors, Gradients } from "../constants/constants";
 import Transactions from "../components/Transactions";
-import { defaultTransactions } from "../data/transactions";
+import { defaultTransactions, Transaction } from "../data/transactions";
 import Connections from "../components/Connections";
 import { PageHeader } from "../components/shared/PageHeader";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
+import SecurityAlerts from "../components/SecurityAlerts";
+import { SecurityAlert, defaultSecurityAlerts } from "../data/securityAlerts";
 
 function AccountPage(): React.JSX.Element {
   const { accountId: institutionId } = useParams<{ accountId?: string }>();
   const [loading, setLoading] = useState(false);
   const [institution, setInstitution] = useState<Institution | null>(null);
+  const [securityAlerts, setSecurityAlerts] = useState<SecurityAlert[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
     if (institutionId) {
@@ -27,6 +31,21 @@ function AccountPage(): React.JSX.Element {
         // For now, we'll simulate finding institution details from our mock data
         const foundInstitution = findInstitutionById(institutionId);
         setInstitution(foundInstitution);
+
+        // Filter security alerts for this specific institution
+        if (foundInstitution) {
+          const institutionAlerts = defaultSecurityAlerts.filter((alert) =>
+            alert.institutions?.some((inst) => inst.id === institutionId)
+          );
+          setSecurityAlerts(institutionAlerts);
+
+          // Filter transactions for this specific institution
+          const institutionTransactions = defaultTransactions.filter(
+            (transaction) => transaction.institutionId === institutionId
+          );
+          setTransactions(institutionTransactions);
+        }
+
         setLoading(false);
       }, randomDelay);
     }
@@ -190,10 +209,15 @@ function AccountPage(): React.JSX.Element {
 
         <div css={{ display: "flex", flexDirection: "column", gap: "32px" }}>
           <AccountItem institution={institution} showHeader={false} />
-          <Connections />
+          <SecurityAlerts
+            alerts={securityAlerts}
+            institutionId={institutionId}
+          />
+          <Connections institution={institution} />
           <Transactions
             title="Transactions"
-            transactions={defaultTransactions}
+            transactions={transactions}
+            institutionId={institutionId}
           />
 
           <button

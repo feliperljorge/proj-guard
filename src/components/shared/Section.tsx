@@ -30,7 +30,7 @@ const Section: React.FC<SectionProps> = ({
           css={{
             marginLeft: "4px",
             display: "flex",
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "space-between",
           }}
         >

@@ -1,11 +1,45 @@
+/** @jsxImportSource @emotion/react */
+
 import React from "react";
-import SecurityAlerts from "../components/SecurityAlerts";
+import { useParams } from "react-router-dom";
+
+import { PageHeader } from "../components/shared/PageHeader";
+import { AlertsContainer } from "../components/SecurityAlerts";
+import { defaultSecurityAlerts } from "../data/securityAlerts";
+import { defaultInstitutions } from "../data/accounts";
 
 function SecurityAlertsPage(): React.JSX.Element {
+  const { accountId } = useParams<{ accountId?: string }>();
+
+  const alerts = accountId
+    ? defaultSecurityAlerts.filter((alert) =>
+        alert.institutions?.some((inst) => inst.id === accountId)
+      )
+    : defaultSecurityAlerts;
+
+  // Get institution name for filtered view
+  const institution = accountId
+    ? defaultInstitutions.find((inst) => inst.id === accountId)
+    : null;
+
+  const pageTitle = institution
+    ? `Security alerts - ${institution.institutionName}`
+    : "Security alerts";
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Security Alerts</h1>
-      <SecurityAlerts />
+    <div
+      css={{
+        padding: "16px",
+        paddingBottom: "48px",
+        width: "100%",
+        maxWidth: "100%",
+        overflowX: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
+      <PageHeader title={pageTitle} />
+
+      <AlertsContainer alerts={alerts} />
     </div>
   );
 }

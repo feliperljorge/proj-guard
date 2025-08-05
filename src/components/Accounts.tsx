@@ -232,7 +232,7 @@ const Accounts: React.FC<AccountsProps> = ({ institutions = [] }) => {
         css={{
           display: "flex",
           flexDirection: "column",
-          gap: "12px",
+          gap: "14px",
         }}
       >
         {displayInstitutions.map((institution) => (

@@ -19,7 +19,15 @@ function App(): React.JSX.Element {
           <Route path="/accounts" element={<AccountPage />} />
           <Route path="/accounts/:accountId" element={<AccountPage />} />
           <Route path="/security-alerts" element={<SecurityAlertsPage />} />
+          <Route
+            path="/security-alerts/:accountId"
+            element={<SecurityAlertsPage />}
+          />
           <Route path="/transactions" element={<TransactionsPage />} />
+          <Route
+            path="/transactions/:accountId"
+            element={<TransactionsPage />}
+          />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>

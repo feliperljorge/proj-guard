@@ -151,47 +151,45 @@ const SettingsSection: React.FC = () => {
 // Main Profile Component
 function Profile(): React.JSX.Element {
   return (
-    <>
+    <div
+      css={{
+        padding: "16px",
+        paddingBottom: "48px",
+        width: "100%",
+        maxWidth: "100%",
+        overflowX: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
+      <PageHeader title="Profile" />
+
       <div
         css={{
-          padding: "16px",
-          paddingBottom: "48px",
-          width: "100%",
-          maxWidth: "100%",
-          overflowX: "hidden",
-          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          gap: "32px",
         }}
       >
-        <PageHeader title="Profile" />
-
-        <div
+        <PersonalInfoSection />
+        <SettingsSection />
+        <button
           css={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "32px",
+            height: "56px",
+            borderRadius: "100px",
+            color: Colors.white,
+            fontSize: "14px",
+            fontWeight: "500",
+            border: "1px solid rgba(255, 255, 255, 0.20)",
+            backgroundColor: Colors.backgroundBlue,
+            // backdropFilter: "blur(30px)",
+            boxShadow: "0px 6px 12px 0px rgba(85, 85, 85, 0.12)",
+            cursor: "pointer",
           }}
         >
-          <PersonalInfoSection />
-          <SettingsSection />
-          <button
-            css={{
-              height: "56px",
-              borderRadius: "100px",
-              color: Colors.white,
-              fontSize: "14px",
-              fontWeight: "500",
-              border: "1px solid rgba(255, 255, 255, 0.20)",
-              backgroundColor: Colors.backgroundBlue,
-              // backdropFilter: "blur(30px)",
-              boxShadow: "0px 6px 12px 0px rgba(85, 85, 85, 0.12)",
-              cursor: "pointer",
-            }}
-          >
-            Log out
-          </button>
-        </div>
+          Log out
+        </button>
       </div>
-    </>
+    </div>
   );
 }
 
