@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
           "0 0 2px 0 rgba(255, 255, 255, 0.20) inset, 0 0 2px 0 rgba(17, 17, 18, 0.02), 0 4px 16px 4px rgba(17, 17, 18, 0.10)",
       }}
     >
-      {/* Left - Hamburger Menu */}
+      {/* Hamburger Menu */}
       <div
         css={{
           display: "flex",
@@ -44,54 +44,34 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
             background: "none",
             border: "none",
             cursor: "pointer",
-            height: "32px",
-            width: "32px",
+            height: "30px",
+            width: "30px",
             padding: "8px",
             transition: "background-color 0.3s ease",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            gap: "4px",
+            gap: "3px",
           }}
         >
-          <span
-            css={{
-              display: "block",
-              width: "100%",
-              height: "3px",
-              background: "white",
-              borderRadius: "2px",
-              transition: "all 0.3s ease",
-            }}
-          />
-          <span
-            css={{
-              display: "block",
-              width: "100%",
-              height: "3px",
-              background: "white",
-              borderRadius: "2px",
-              transition: "all 0.3s ease",
-            }}
-          />
-          <span
-            css={{
-              display: "block",
-              width: "100%",
-              height: "3px",
-              background: "white",
-              borderRadius: "2px",
-              transition: "all 0.3s ease",
-            }}
-          />
+          {[1, 2, 3].map((index) => (
+            <span
+              key={index}
+              css={{
+                display: "block",
+                width: "100%",
+                height: "1.5px",
+                background: "white",
+                transition: "all 0.3s ease",
+              }}
+            />
+          ))}
         </button>
       </div>
 
-      {/* Center - Icon */}
       <PlaidLogo />
 
-      {/* Right - Profile Picture */}
       <div
         onClick={() => navigate("/profile")}
         css={{
@@ -106,7 +86,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
             width: "32px",
             height: "32px",
             borderRadius: "50%",
-            // border: "2px solid rgba(255, 255, 255, 0.3)",
             cursor: "pointer",
             transition: "all 0.3s ease",
             objectFit: "cover",
