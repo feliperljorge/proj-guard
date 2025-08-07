@@ -6,6 +6,8 @@ import ViewAllButton from "./shared/ViewAllButton";
 import { Transaction, defaultTransactions } from "../data/transactions";
 
 import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
+import { ReactComponent as ShieldIcon } from "../assets/shield.svg";
+
 import { Colors } from "../constants/constants";
 
 const TransactionItem: React.FC<{ transaction: Transaction }> = ({
@@ -37,22 +39,7 @@ const TransactionItem: React.FC<{ transaction: Transaction }> = ({
       }}
     >
       <div css={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        {/* <div
-          css={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "32px",
-            height: "32px",
-            borderRadius: "50%",
-            backgroundColor: getCategoryColor(transaction.category),
-            color: "white",
-            fontSize: "12px",
-            fontWeight: "bold",
-          }}
-        >
-          {transaction.category.charAt(0).toUpperCase()}
-        </div> */}
+        <ShieldIcon />
         <div
           css={{
             display: "flex",
