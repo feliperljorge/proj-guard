@@ -8,6 +8,7 @@ import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
 import { ReactComponent as ShieldIcon } from "../assets/shield.svg";
 import { defaultUser } from "../data/user";
 import { ReactComponent as PlaidIcon } from "../assets/plaid-icon.svg";
+import { ReactComponent as BG } from "../assets/profile-id-bg.svg";
 
 const ProfileItem: React.FC<{
   title: string;
@@ -161,8 +162,21 @@ const ProfileCard: React.FC = () => {
         overflow: "hidden",
         display: "flex",
         justifyContent: "space-between",
+        position: "relative",
       }}
     >
+      <BG
+        css={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+        }}
+      />
       <div
         css={{
           display: "flex",
@@ -174,7 +188,9 @@ const ProfileCard: React.FC = () => {
       >
         <div css={{ display: "flex", alignItems: "center", gap: "4px" }}>
           <PlaidIcon />
-          <span css={{ fontSize: "20px", fontWeight: "600" }}>Passport</span>
+          <span css={{ fontSize: "20px", fontWeight: "600", color: "white" }}>
+            Passport
+          </span>
         </div>
 
         <div
