@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Section, { SectionHeaderButton } from "./shared/Section";

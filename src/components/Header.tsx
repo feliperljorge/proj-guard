@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
 import { ReactComponent as PlaidLogo } from "../assets/Plaid Logo.svg";
 import { useNavigate } from "react-router-dom";

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as ChevronIcon } from "../../assets/chevron.svg";
 import { Colors } from "../../constants/constants";

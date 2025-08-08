@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { Connection } from "../data/connections";
 import { Colors } from "../constants/constants";

@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { defaultUser } from "../data/user";
 import { Colors } from "../constants/constants";
 

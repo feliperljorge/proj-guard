@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AccountItem } from "../components/Accounts";

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
 import Section from "./shared/Section";
 import Container from "./shared/Container";

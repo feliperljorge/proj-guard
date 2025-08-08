@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { Colors } from "../../constants/constants";
 import { ReactComponent as CloseIcon } from "../../assets/x.svg";

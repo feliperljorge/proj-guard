@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { connections, Connection as ConnectionType } from "../data/connections";
 import Section from "./shared/Section";
