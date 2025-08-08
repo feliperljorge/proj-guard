@@ -18,6 +18,7 @@ const Hero: React.FC = ({}) => {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
+        textAlign: "center",
       }}
     >
       <p

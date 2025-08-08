@@ -12,6 +12,8 @@ const Feed: React.FC<FeedProps> = ({ children, className = "" }) => {
     <div
       className={className}
       css={{
+        // marginLeft: "1px",
+        // marginRight: "1px",
         padding: "16px",
         paddingBottom: "48px",
         display: "flex",
