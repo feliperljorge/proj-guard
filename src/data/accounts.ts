@@ -10,7 +10,7 @@ export interface AccountDetails {
 export interface Institution {
   id: string;
   institutionName: string;
-  icon: string; // URL to institution icon
+  icon: string;
   accounts: AccountDetails[];
   color?: string;
   connections: Connection[];
@@ -22,7 +22,7 @@ export const defaultInstitutions: Institution[] = [
     institutionName: "Chase Bank",
     icon: "https://logo.clearbit.com/chase.com",
     color: "#26569c",
-    connections: [connections[0], connections[1], connections[3]], // Venmo, Robinhood, PayPal
+    connections: [connections[0], connections[1], connections[3]],
     accounts: [
       {
         type: "checking",
@@ -43,7 +43,7 @@ export const defaultInstitutions: Institution[] = [
     institutionName: "Chime",
     icon: "https://logo.clearbit.com/chime.com",
     color: "#5ec37e",
-    connections: [connections[0], connections[4], connections[5]], // Venmo, Cash App, Coinbase
+    connections: [connections[0], connections[4], connections[5]],
     accounts: [
       {
         type: "checking",
@@ -64,7 +64,7 @@ export const defaultInstitutions: Institution[] = [
     institutionName: "SoFi",
     icon: "https://logo.clearbit.com/sofi.com",
     color: "#48a0c3",
-    connections: [connections[1], connections[3], connections[6]], // Robinhood, PayPal, Stripe
+    connections: [connections[1], connections[3], connections[6]],
     accounts: [
       {
         type: "checking",

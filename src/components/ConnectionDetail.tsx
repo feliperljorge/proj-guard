@@ -177,7 +177,6 @@ const ConnectionDetail: React.FC<ConnectionDetailProps> = ({
         )}
       </p>
 
-      {/* Actions */}
       <div
         css={{
           display: "flex",

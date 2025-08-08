@@ -8,7 +8,6 @@ import { ReactComponent as ChevronIcon } from "../assets/chevron.svg";
 import { ReactComponent as ShieldIcon } from "../assets/shield.svg";
 import { defaultUser } from "../data/user";
 
-// ProfileItem Component
 const ProfileItem: React.FC<{
   title: string;
   value: string;
@@ -76,7 +75,6 @@ const ProfileItem: React.FC<{
   );
 };
 
-// Personal Info Section Component
 const PersonalInfoSection: React.FC = () => {
   return (
     <Section title="Personal Info">
@@ -109,7 +107,6 @@ const PersonalInfoSection: React.FC = () => {
   );
 };
 
-// Settings Section Component
 const SettingsSection: React.FC = () => {
   const handleNotificationSettings = () => {
     console.log("Notification settings clicked");
@@ -148,7 +145,6 @@ const SettingsSection: React.FC = () => {
   );
 };
 
-// Main Profile Component
 function Profile(): React.JSX.Element {
   return (
     <div

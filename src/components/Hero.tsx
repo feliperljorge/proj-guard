@@ -51,7 +51,7 @@ const Hero: React.FC = ({}) => {
         css={{
           margin: "auto",
           width: "fit-content",
-          padding: "2px",
+          padding: "1.5px",
           borderRadius: "100px",
           background: hasAlerts
             ? "linear-gradient(90deg, #8B8BF9 0%, #E574FB 50%, #7373ed 100%)"

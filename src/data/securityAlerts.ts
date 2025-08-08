@@ -9,11 +9,8 @@ export interface SecurityAlert {
     | "new_account_opened"
     | "identity_verified";
   title: string;
-  date: string; // ISO date string
+  date: string;
   institutions?: Institution[];
-  status: "pending" | "resolved" | "investigating";
-  amount?: number; // For financial alerts
-  location?: string; // For location-based alerts
 }
 
 export const defaultSecurityAlerts: SecurityAlert[] = [
@@ -39,8 +36,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "investigating",
-    location: "San Francisco, CA",
   },
   {
     id: "alert-2",
@@ -56,7 +51,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
   },
   {
     id: "alert-3",
@@ -72,7 +66,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "pending",
   },
   {
     id: "alert-4",
@@ -88,7 +81,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
   },
   {
     id: "alert-5",
@@ -104,7 +96,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
   },
   {
     id: "alert-6",
@@ -120,8 +111,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "investigating",
-    location: "New York, NY",
   },
   {
     id: "alert-7",
@@ -137,7 +126,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
   },
   {
     id: "alert-8",
@@ -153,8 +141,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "pending",
-    amount: 5000,
   },
   {
     id: "alert-9",
@@ -170,7 +156,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "investigating",
   },
   {
     id: "alert-10",
@@ -186,8 +171,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
-    location: "Miami, FL",
   },
   {
     id: "alert-11",
@@ -203,7 +186,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
   },
   {
     id: "alert-12",
@@ -219,7 +201,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "pending",
   },
   {
     id: "alert-13",
@@ -235,8 +216,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
-    amount: 10000,
   },
   {
     id: "alert-14",
@@ -259,8 +238,6 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "investigating",
-    location: "Multiple locations",
   },
   {
     id: "alert-15",
@@ -276,6 +253,5 @@ export const defaultSecurityAlerts: SecurityAlert[] = [
         connections: [],
       },
     ],
-    status: "resolved",
   },
 ];

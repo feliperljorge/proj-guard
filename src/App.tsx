@@ -35,7 +35,6 @@ function App(): React.JSX.Element {
   );
 }
 
-// Component that uses the scroll-to-top hook
 function ScrollToTop() {
   useScrollToTop();
   return null;

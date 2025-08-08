@@ -27,7 +27,6 @@ export const AccountItem: React.FC<{
   };
 
   const handleInstitutionClick = () => {
-    // Navigate to this institution
     if (institution.accounts.length > 0) {
       navigate(`/accounts/${institution.id}`);
     }
@@ -41,7 +40,6 @@ export const AccountItem: React.FC<{
           flexDirection: "column",
         }}
       >
-        {/* Institution Header */}
         {showHeader && (
           <div
             css={{
@@ -88,7 +86,6 @@ export const AccountItem: React.FC<{
           </div>
         )}
 
-        {/* Accounts List */}
         <div
           css={{
             display: "flex",
@@ -184,7 +181,6 @@ const Accounts: React.FC<AccountsProps> = ({ institutions = [] }) => {
   const displayInstitutions =
     institutions.length > 0 ? institutions : defaultInstitutions;
 
-  // Calculate total balance across all institutions
   const calculateTotalBalance = () => {
     return displayInstitutions.reduce((total, institution) => {
       return (
@@ -200,9 +196,8 @@ const Accounts: React.FC<AccountsProps> = ({ institutions = [] }) => {
     const isNegative = balance < 0;
     const absBalance = Math.abs(balance);
 
-    // Convert to K format
     const inThousands = absBalance / 1000;
-    const formatted = inThousands.toFixed(2).replace(/\.?0+$/, ""); // Remove trailing zeros
+    const formatted = inThousands.toFixed(2).replace(/\.?0+$/, "");
     const displayValue = formatted.endsWith(".")
       ? formatted.slice(0, -1)
       : formatted;

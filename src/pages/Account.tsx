@@ -23,12 +23,11 @@ function AccountPage(): React.JSX.Element {
   useEffect(() => {
     if (institutionId) {
       setLoading(true);
-      // TODO: Make API call to fetch specific institution details
 
       // Simulate API call delay with randomized loading time
-      const randomDelay = Math.random() * 650 + 350; // Random delay between 350ms and 1000ms
+      // finding institution from mock data
+      const randomDelay = Math.random() * 1000;
       setTimeout(() => {
-        // For now, we'll simulate finding institution details from our mock data
         const foundInstitution = findInstitutionById(institutionId);
         setInstitution(foundInstitution);
 
@@ -52,7 +51,6 @@ function AccountPage(): React.JSX.Element {
   }, [institutionId]);
 
   const findInstitutionById = (id: string) => {
-    // This is a mock implementation - in real app, this would be an API call
     return (
       defaultInstitutions.find((institution) => institution.id === id) || null
     );
@@ -74,66 +72,6 @@ function AccountPage(): React.JSX.Element {
 
   if (!institution && loading) {
     return (
-      // <div
-      //   css={{
-      //     padding: "16px",
-      //     paddingBottom: "48px",
-      //     width: "100%",
-      //     maxWidth: "100%",
-      //     overflowX: "hidden",
-      //     boxSizing: "border-box",
-      //   }}
-      // >
-      //   <PageHeader title="Account details" />
-
-      //   <div
-      //     css={{
-      //       display: "flex",
-      //       flexDirection: "column",
-      //       gap: "24px",
-      //       marginTop: "24px",
-      //     }}
-      //   >
-      //     {/* Institution header skeleton */}
-      //     <div css={{ display: "flex", alignItems: "center", gap: "12px" }}>
-      //       <Skeleton width="24px" height="24px" borderRadius="12px" />
-      //       <div css={{ flex: 1 }}>
-      //         <Skeleton width="120px" height="16px" />
-      //       </div>
-      //     </div>
-
-      //     {/* Balance skeleton */}
-      //     <Skeleton width="200px" height="32px" />
-
-      //     {/* Accounts skeleton */}
-      //     <div css={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      //       {Array.from({ length: 3 }).map((_, index) => (
-      //         <div
-      //           key={index}
-      //           css={{
-      //             padding: "16px",
-      //             borderRadius: "12px",
-      //             background: "rgba(255, 255, 255, 0.05)",
-      //             border: "1px solid rgba(255, 255, 255, 0.1)",
-      //           }}
-      //         >
-      //           <div
-      //             css={{
-      //               display: "flex",
-      //               justifyContent: "space-between",
-      //               alignItems: "center",
-      //               marginBottom: "8px",
-      //             }}
-      //           >
-      //             <Skeleton width="100px" height="14px" />
-      //             <Skeleton width="80px" height="14px" />
-      //           </div>
-      //           <Skeleton width="60px" height="12px" />
-      //         </div>
-      //       ))}
-      //     </div>
-      //   </div>
-      // </div>
       <div
         css={{
           display: "flex",

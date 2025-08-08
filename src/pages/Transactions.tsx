@@ -18,7 +18,6 @@ function TransactionsPage(): React.JSX.Element {
       )
     : defaultTransactions;
 
-  // Get institution name for filtered view
   const institution = accountId
     ? defaultInstitutions.find((inst) => inst.id === accountId)
     : null;

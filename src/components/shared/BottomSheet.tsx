@@ -83,19 +83,6 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
           border: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
-        {/* Handle */}
-        {/* <div
-          css={{
-            width: "40px",
-            height: "4px",
-            backgroundColor: "rgba(255, 255, 255, 0.3)",
-            borderRadius: "2px",
-            margin: "12px auto",
-          }}
-        /> */}
-
-        {/* Header */}
-
         <div
           css={{
             padding: "20px",
@@ -123,7 +110,6 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
           </button>
         </div>
 
-        {/* Content */}
         <div
           css={{
             padding: "20px",

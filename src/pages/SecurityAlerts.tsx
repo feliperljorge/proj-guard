@@ -17,7 +17,6 @@ function SecurityAlertsPage(): React.JSX.Element {
       )
     : defaultSecurityAlerts;
 
-  // Get institution name for filtered view
   const institution = accountId
     ? defaultInstitutions.find((inst) => inst.id === accountId)
     : null;
