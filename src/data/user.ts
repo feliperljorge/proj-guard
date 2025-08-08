@@ -10,6 +10,9 @@ export interface User {
   lastLogin?: string;
   location?: string;
   socialSecurity?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
 }
 
 export const defaultUser: User = {
@@ -23,6 +26,8 @@ export const defaultUser: User = {
     "https://img.freepik.com/premium-photo/ai-generated-images-build-user-profile-page_1290175-101.jpg",
   createdAt: "2024-01-15T10:30:00Z",
   lastLogin: "2024-12-19T14:45:00Z",
-  location: "San Francisco, CA",
+  city: "San Francisco",
+  state: "CA",
+  zip: "94101",
   socialSecurity: "***-**-1234",
 };
